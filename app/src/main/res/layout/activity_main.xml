@@ -1,53 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Button to show Toast -->
-    <Button
-        android:id="@+id/button_toast"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:onClick="showToast"
-        android:text="@string/button_label_toast" />
-
-    <!-- Text field to show counter -->
+    <!-- For Heading -->
     <TextView
-        android:id="@+id/show_count"
+        android:id="@+id/article_heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#FFFF00"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/count_initial_value"
-        android:textColor="@color/design_default_color_primary"
-        android:textSize="160sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/button_toast"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:background="@color/design_default_color_primary"
+        android:padding="8dp"
+        android:text="@string/article_title"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
-    <!-- Button to increase counter by 1 and show in the text field -->
-    <Button
-        android:id="@+id/button_count"
+    <!-- For sub heading -->
+    <TextView
+        android:id="@+id/article_subheading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/show_count"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="countUp"
-        android:text="@string/button_label_count"
-        />
+        android:layout_below="@id/article_heading"
+        android:padding="8dp"
+        android:text="@string/article_subtitle"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/article_subheading">
+
+        <!-- for content -->
+        <TextView
+            android:id="@+id/article"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:lineSpacingExtra="1dp"
+            android:padding="8dp"
+            android:text="@string/article_text" />
+    </ScrollView>
 
 </RelativeLayout>
