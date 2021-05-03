@@ -2,7 +2,7 @@ package com.streamliners.codelab;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -10,8 +10,17 @@ import com.streamliners.codelab.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    SharedPreferences preferences;
 
+    // Represents some constants to use as a key to transfer data between activities
+    public static final String COUNT_KEY = "Count";
+    public static final String COLOR_KEY = "Color";
+
+    // For the count of the text view
     private int mCount;
+
+    // for the back ground color of the text view
+    private int mBackgroundColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +32,16 @@ public class MainActivity extends AppCompatActivity {
         // Set the title for the activity
         setTitle("Hello Shared Preferences");
 
+        preferences = getPreferences(MODE_PRIVATE);
+
         setUpEventHandlers();
+
+        if (preferences != null) {
+            mCount = preferences.getInt(COUNT_KEY, 0);
+            displayCount();
+            mBackgroundColor = preferences.getInt(COLOR_KEY, getResources().getColor(R.color.gray));
+            updateBackgroundColor();
+        }
     }
 
     /**
@@ -47,28 +65,32 @@ public class MainActivity extends AppCompatActivity {
         binding.blackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.countTextView.setBackgroundColor(getResources().getColor(R.color.black));
+                 mBackgroundColor = getResources().getColor(R.color.black);
+                 updateBackgroundColor();
             }
         });
 
         binding.redButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.countTextView.setBackgroundColor(getResources().getColor(R.color.red));
+                mBackgroundColor = getResources().getColor(R.color.red);
+                updateBackgroundColor();
             }
         });
 
         binding.blueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.countTextView.setBackgroundColor(getResources().getColor(R.color.blue));
+                mBackgroundColor = getResources().getColor(R.color.blue);
+                updateBackgroundColor();
             }
         });
 
         binding.greenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.countTextView.setBackgroundColor(getResources().getColor(R.color.green));
+                mBackgroundColor = getResources().getColor(R.color.green);
+                updateBackgroundColor();
             }
         });
     }
@@ -77,9 +99,16 @@ public class MainActivity extends AppCompatActivity {
      * To reset the count value to 0 and display in the text view
      */
     private void reset() {
+        // To reset the count
         mCount = 0;
-        binding.countTextView.setBackgroundColor(getResources().getColor(R.color.gray));
         displayCount();
+
+        // To reset the color
+        mBackgroundColor = getResources().getColor(R.color.gray);
+        updateBackgroundColor();
+
+        // To clear the data stored in the shared preferences
+        preferences.edit().clear().apply();
     }
 
     /**
@@ -95,5 +124,22 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayCount() {
         binding.countTextView.setText(String.valueOf(mCount));
+    }
+
+    /**
+     * To update the background color of the text view
+     */
+    private void updateBackgroundColor() {
+        binding.countTextView.setBackgroundColor(mBackgroundColor);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        preferences.edit()
+                .putInt(COUNT_KEY, mCount)
+                .putInt(COLOR_KEY, mBackgroundColor)
+                .apply();
     }
 }
