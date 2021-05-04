@@ -10,6 +10,13 @@
     <color name="green">#FF008000</color>
     <color name="red">#FFFF0000</color>
     <color name="blue">#FF0000FF</color>
+
+    // additional colors
     <color name="gray">#E6E5E5</color>
     <color name="colorAccent">#FF4081</color>
+
+    // my colors
+    <color name="my_green">#12C700</color>
+    <color name="my_red">#E54304</color>
+    <color name="my_yellow">#FFC107</color>
 </resources>
