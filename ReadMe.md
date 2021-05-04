@@ -1,7 +1,9 @@
 # Codelab 1.3
 
 I have made an simple UI as shown in codelab.
-
+<br>
+Download [APK](https://github.com/imAtulSharma/Codelab/releases/download/v3.0/app-debug.apk) here
+<br>
 [Android fundamentals 1.3: Your first interactive UI](https://developer.android.com/codelabs/android-training-text-and-scrolling-views?index=..%2F..%2Fandroid-training#0)
 
 ## Preview of the application
