@@ -10,5 +10,6 @@ Download [APK](https://github.com/imAtulSharma/Codelab/releases/download/v2.0/ap
 
 <img title="" src="https://raw.githubusercontent.com/imAtulSharma/imAtulSharma/master/CDN/AndroidApplicationsPreviews/Codelab/1.2%20Part-B/01.PNG" alt="" width="231">
 <img title="" src="https://raw.githubusercontent.com/imAtulSharma/imAtulSharma/master/CDN/AndroidApplicationsPreviews/Codelab/1.2%20Part-B/02.PNG" alt="" width="231">
+<img title="" src="https://raw.githubusercontent.com/imAtulSharma/imAtulSharma/master/CDN/AndroidApplicationsPreviews/Codelab/1.2%20Part-B/03.PNG" alt="" width="231">
 
 
