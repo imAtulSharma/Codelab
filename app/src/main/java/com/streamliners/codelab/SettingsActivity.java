@@ -47,6 +47,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     // Setup Methods
 
+    /**
+     * To setup toggle buttons
+     */
     private void setupToggles() {
         // For color button
         binding.toggleColor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -77,6 +80,9 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * To hide the error when text changes
+     */
     private void setupHideError() {
         binding.countTextView.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
@@ -96,6 +102,9 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Inflate the spinner
+     */
     private void inflateSpinner() {
         // Colors Array
         String[] colors = {"Select Color", "Black", "Red", "Blue", "Green"};
@@ -108,6 +117,9 @@ public class SettingsActivity extends AppCompatActivity {
         binding.spinnerColor.setAdapter(aa);
     }
 
+    /**
+     * Setup the action for the buttons
+     */
     private void setupButtons() {
         // For reset button
         binding.buttonReset.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +140,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     // Operation Methods
 
+    /**
+     * Reset the preferences
+     */
     private void resetPreferences() {
         preferences.edit().clear().apply();
 
@@ -135,6 +150,9 @@ public class SettingsActivity extends AppCompatActivity {
         Toast.makeText(SettingsActivity.this, "Preferences cleared!", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Update the preferences
+     */
     private void savePreferences() {
         int count = -1, color = -1;
 
