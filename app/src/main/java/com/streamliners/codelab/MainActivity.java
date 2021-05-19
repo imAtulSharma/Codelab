@@ -154,4 +154,22 @@ public class MainActivity extends AppCompatActivity {
     private void updateBackgroundColor() {
         binding.countTextView.setBackgroundColor(mBackgroundColor);
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt(COUNT_KEY, mCount);
+        outState.putInt(COLOR_KEY, mBackgroundColor);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        // Set the variable and update the UI
+        mCount = savedInstanceState.getInt(COUNT_KEY, 0);
+        displayCount();
+        mBackgroundColor = savedInstanceState.getInt(COLOR_KEY, getResources().getColor(R.color.gray));
+        updateBackgroundColor();
+
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 }
