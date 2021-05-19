@@ -1,20 +1,24 @@
 package com.streamliners.codelab;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.streamliners.codelab.databinding.ActivityMainBinding;
 
+import static com.streamliners.codelab.Constants.COLOR_KEY;
+import static com.streamliners.codelab.Constants.COUNT_KEY;
+
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     SharedPreferences preferences;
-
-    // Represents some constants to use as a key to transfer data between activities
-    public static final String COUNT_KEY = "Count";
-    public static final String COLOR_KEY = "Color";
 
     // For the count of the text view
     private int mCount;
@@ -32,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         // Set the title for the activity
         setTitle("Hello Shared Preferences");
 
-        preferences = getPreferences(MODE_PRIVATE);
+        preferences = getSharedPreferences("myPreferences", MODE_PRIVATE);
 
         setUpEventHandlers();
 
@@ -42,6 +46,24 @@ public class MainActivity extends AppCompatActivity {
             mBackgroundColor = preferences.getInt(COLOR_KEY, getResources().getColor(R.color.gray));
             updateBackgroundColor();
         }
+    }
+
+    // Application bar menu
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.my_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -131,15 +153,5 @@ public class MainActivity extends AppCompatActivity {
      */
     private void updateBackgroundColor() {
         binding.countTextView.setBackgroundColor(mBackgroundColor);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        preferences.edit()
-                .putInt(COUNT_KEY, mCount)
-                .putInt(COLOR_KEY, mBackgroundColor)
-                .apply();
     }
 }
