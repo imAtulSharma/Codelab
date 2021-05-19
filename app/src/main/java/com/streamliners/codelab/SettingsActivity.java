@@ -180,9 +180,9 @@ public class SettingsActivity extends AppCompatActivity {
         // When count changed selected
         if (isColorSelected) {
             switch (binding.spinnerColor.getSelectedItemPosition()) {
-                case 1: color = getResources().getColor(R.color.red);
+                case 1: color = getResources().getColor(R.color.black);
                     break;
-                case 2: color = getResources().getColor(R.color.black);
+                case 2: color = getResources().getColor(R.color.red);
                     break;
                 case 3: color = getResources().getColor(R.color.blue);
                     break;
