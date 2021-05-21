@@ -36,16 +36,9 @@ public class MainActivity extends AppCompatActivity {
         // Set the title for the activity
         setTitle("Hello Shared Preferences");
 
-        preferences = getSharedPreferences("myPreferences", MODE_PRIVATE);
-
         setUpEventHandlers();
 
-        if (preferences != null) {
-            mCount = preferences.getInt(COUNT_KEY, 0);
-            displayCount();
-            mBackgroundColor = preferences.getInt(COLOR_KEY, getResources().getColor(R.color.gray));
-            updateBackgroundColor();
-        }
+        getDataFromPreferences();
     }
 
     // Application bar menu
@@ -64,6 +57,19 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * To update the data through shared preferences
+     */
+    private void getDataFromPreferences() {
+        preferences = getSharedPreferences("myPreferences", MODE_PRIVATE);
+        if (preferences != null) {
+            mCount = preferences.getInt(COUNT_KEY, 0);
+            displayCount();
+            mBackgroundColor = preferences.getInt(COLOR_KEY, getResources().getColor(R.color.gray));
+            updateBackgroundColor();
+        }
     }
 
     /**
@@ -171,5 +177,11 @@ public class MainActivity extends AppCompatActivity {
         updateBackgroundColor();
 
         super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onResume() {
+        getDataFromPreferences();
+        super.onResume();
     }
 }
